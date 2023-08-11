@@ -11,7 +11,8 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DIALECT, PORT } =
   process.env;
 
 const sequelize = new Sequelize(
-  `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT}/${DB_NAME}`,
+  //  `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT}/${DB_NAME}`,
+  DB_HOST,
   {
     logging: false, // oculta la info de cada query que se ejecuta desde postgres
     native: false, // ~30% mejora de rendimiento
