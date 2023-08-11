@@ -10,7 +10,7 @@ server.use(cors());
 server.use(bodyParser.json({ limit: "50mb" }));
 
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "agilix-beta.vercel.app");
+  res.header("Access-Control-Allow-Origin", "agilix-pr.vercel.app");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
