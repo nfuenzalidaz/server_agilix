@@ -1,7 +1,7 @@
 const server = require("./src/app");
 const { conn } = require("./src/db");
 
-const PORT = 3001;
+const PORT = process.env.PORT;
 
 conn.sync({ force: true }).then(() => {
   server.listen(PORT, "0.0.0.0", () => {
