@@ -7,10 +7,11 @@ const path = require("path");
 require("dotenv").config();
 
 //obtenemos las variables del env
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DIALECT } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DIALECT, PORT } =
+  process.env;
 
 const sequelize = new Sequelize(
-  `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+  `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT}/${DB_NAME}`,
   {
     logging: false, // oculta la info de cada query que se ejecuta desde postgres
     native: false, // ~30% mejora de rendimiento
