@@ -1,27 +1,24 @@
-const updateCliente = require("../../controllers/cliente/updateCliente");
-const deleteCliente = require("../../controllers/cliente/deleteCliente");
+const updateCliente = require ('../../controllers/Cliente/updateCliente')
+const deleteCliente = require ('../../controllers/Cliente/deleteCliente')
 
 const updateClienteHandler = async (req, res, next) => {
   const { id } = req.params;
-  const { nombre, email, telefono, dni, estado } = req.body;
+  const { nombre, email, telefono, dni, estado} = req.body;
   try {
-    const respuesta =
-      typeof estado !== "boolean"
-        ? await updateCliente(id, nombre, email, telefono, dni)
-        : await deleteCliente(id, estado);
-    res.status(200).json({ respuesta });
+    const respuesta = (typeof estado!=="boolean")?await updateCliente(id,nombre, email, telefono, dni):await deleteCliente(id,estado);
+    res.status(200).json({respuesta});
   } catch (err) {
-    console.error("Error:", err);
+    console.error('Error:', err);
 
     let statusCode = 500;
-    let message = "Error interno del servidor.";
+    let message = 'Error interno del servidor.';
 
-    if (err.nombre === "ValidationError") {
+    if (err.nombre === 'ValidationError') {
       statusCode = 400;
       message = err.message;
-    } else if (err.nombre === "SequelizeUniqueConstraintError") {
+    } else if (err.nombre === 'SequelizeUniqueConstraintError') {
       statusCode = 409;
-      message = "El registro ya existe en la base de datos.";
+      message = 'El registro ya existe en la base de datos.';
     }
 
     res.status(statusCode).json({ message });
